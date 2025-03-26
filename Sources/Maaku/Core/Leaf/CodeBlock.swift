@@ -39,5 +39,10 @@ public extension CodeBlock {
         ]
         return NSAttributedString(string: code, attributes: attributes)
     }
+    
+    public func isEqualTo(_ other: any Node) -> Bool {
+        guard let other = other as? Self else { return false }
+        return self.code == other.code && self.info == other.info
+    }
 
 }

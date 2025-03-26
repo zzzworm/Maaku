@@ -31,6 +31,13 @@ public struct TableCell: Node {
     public init(items: [Inline]) {
         self.items = items
     }
+    
+    public func isEqualTo(_ other: Node) -> Bool {
+        guard let other = other as? Self, self.items.count == other.items.count else { return false }
+        return other.items.elementsEqual(self.items) { lhs, rhs in
+            return lhs.isEqualTo(rhs)
+        }
+    }
 
 }
 

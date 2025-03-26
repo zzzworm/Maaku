@@ -45,4 +45,8 @@ public extension HtmlBlock {
         return attributed
     }
 
+    public func isEqualTo(_ other: any Node) -> Bool {
+        guard let other = other as? Self else { return false }
+        return other.html == self.html
+    }
 }

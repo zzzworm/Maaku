@@ -37,5 +37,10 @@ public extension HorizontalRule {
             .strikethroughStyle: NSNumber(value: NSUnderlineStyle.single.rawValue as Int)]
         return NSAttributedString(string: "-----\n", attributes: attributes)
     }
+    
+    public func isEqualTo(_ other: any Node) -> Bool {
+        guard let other = other as? Self else { return false }
+        return true
+    }
 
 }

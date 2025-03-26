@@ -62,4 +62,9 @@ public struct YoutubePlugin: Plugin {
     public init(url: URL) {
         self.url = url
     }
+    
+    public func isEqualTo(_ other: any Node) -> Bool {
+        guard let other = other as? Self else { return false }
+        return self.url == other.url 
+    }
 }

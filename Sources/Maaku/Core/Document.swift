@@ -23,14 +23,26 @@ public protocol MarkdownAttributedString {
 
 /// Represnts a markdown node, which can be either a markdown block or inline element.
 public protocol Node: MarkdownAttributedString {
-
+    func isEqualTo(_ other: Node) -> Bool
 }
+
+extension Node where Self: Equatable {
+    static public  func == (lhs:  Self, rhs: Self) -> Bool {
+        return lhs == rhs
+    }
+    
+    func isEqualTo(_ other: Self) -> Bool{
+        guard let otherBlock = other as? Self else { return false }
+                return self == otherBlock
+    }
+}
+
 
 /// Represents a markdown document, which is a sequence of markdown block elements.
 public struct Document: MarkdownAttributedString {
 
     /// The items (block elements).
-    public let items: [Block]
+    public var items: [Block]
 
     /// Gets the markdown block at the specified index.
     ///

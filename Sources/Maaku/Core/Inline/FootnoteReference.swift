@@ -42,4 +42,9 @@ public extension FootnoteReference {
         return attributed
     }
 
+    
+    public func isEqualTo(_ other: any Node) -> Bool {
+        guard let other = other as? Self else { return false }
+        return self.reference == other.reference 
+    }
 }

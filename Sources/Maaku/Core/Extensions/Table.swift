@@ -16,7 +16,17 @@ public protocol TableLine: Node {
     init()
 
     init(cells: [TableCell])
+    
 
+}
+
+extension TableLine {
+    public func isEqualTo(_ other: any Node) -> Bool {
+        guard let other = other as? Self else { return false }
+        return self.cells.count == other.cells.count && self.cells.elementsEqual(other.cells, by: { lhs, rhs in
+            return lhs.isEqualTo(rhs)
+        })
+    }
 }
 
 /// Represents a table alignment.
@@ -110,6 +120,13 @@ public extension Table {
 
     func attributedText(style: Style) -> NSAttributedString {
         return NSAttributedString()
+    }
+    
+    func isEqualTo(_ other: any Node) -> Bool {
+        guard let other = other as? Self else { return false }
+        return self.rows.count == other.rows.count && self.rows.elementsEqual(other.rows, by: { lhs, rhs in
+            return lhs.isEqualTo(rhs)
+        })
     }
 
 }

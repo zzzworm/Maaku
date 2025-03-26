@@ -8,5 +8,6 @@
 
 /// Represents a markdown block.
 public protocol Block: Node {
-
+    
 }
+

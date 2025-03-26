@@ -18,5 +18,10 @@ public extension LineBreak {
     func attributedText(style: Style) -> NSAttributedString {
         return NSAttributedString(string: "\n")
     }
+    
+    public func isEqualTo(_ other: any Node) -> Bool {
+        guard let other = other as? Self else { return false }
+        return true
+    }
 
 }

@@ -125,5 +125,12 @@ public extension Link {
 
         return attributed
     }
+    
+    public func isEqualTo(_ other: any Node) -> Bool {
+        guard let other = other as? Self, self.text.count == other.text.count else { return false }
+        return self.destination == other.destination && self.title == other.title && self.text.elementsEqual(other.text, by: { lhs, rhs in
+            return lhs.isEqualTo(rhs)
+        })
+    }
 
 }

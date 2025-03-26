@@ -40,4 +40,11 @@ public extension TableHeader {
         return NSAttributedString()
     }
 
+    
+    public func isEqualTo(_ other: any Node) -> Bool {
+        guard let other = other as? Self else { return false }
+        return self.cells.count == other.cells.count && self.cells.elementsEqual(other.cells, by: { lhs, rhs in
+            return lhs.isEqualTo(rhs)
+        })
+    }
 }

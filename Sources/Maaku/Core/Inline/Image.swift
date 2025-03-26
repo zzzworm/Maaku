@@ -97,4 +97,10 @@ public extension Image {
         return attributed
     }
 
+    public func isEqualTo(_ other: any Node) -> Bool {
+        guard let other = other as? Self, self.description.count == other.description.count else { return false }
+        return self.destination == other.destination && self.title == other.title && self.description.elementsEqual(other.description, by: { lhs, rhs in
+            return lhs.isEqualTo(rhs)
+        })
+    }
 }

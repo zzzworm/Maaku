@@ -47,5 +47,12 @@ public extension Emphasis {
 
         return attributed
     }
+    
+    public func isEqualTo(_ other: any Node) -> Bool {
+        guard let other = other as? Self else { return false }
+        return self.items.count == other.items.count && self.items.elementsEqual(other.items, by: { lhs, rhs in
+            return lhs.isEqualTo(rhs)
+        })
+    }
 
 }
